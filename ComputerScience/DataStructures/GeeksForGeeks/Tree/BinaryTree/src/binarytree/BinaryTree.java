@@ -8,7 +8,7 @@ package binarytree;
  */
 public class BinaryTree {
 
-    TreeNode root;
+    public TreeNode root;
 
     public BinaryTree() {
         root = null;
