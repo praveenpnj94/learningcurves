@@ -3,6 +3,9 @@
  */
 package binarytree.easy;
 
+import java.util.Stack;
+
+import binarytree.CharTreeNode;
 import binarytree.TreeNode;
 
 /**
@@ -11,6 +14,30 @@ import binarytree.TreeNode;
 public class DfsTreeTraversal {
 
     public static void inorder(TreeNode root) {
+        if (root == null) { return; }
+        inorder(root.left);
+        System.out.print(root.data + " ");
+        inorder(root.right);
+    }
+
+    public static void inorderIterative(TreeNode root) {
+        if (root == null) { return; }
+        Stack<TreeNode> s = new Stack<TreeNode>();
+        TreeNode curr = root;
+        while (curr != null || !s.isEmpty()) {
+            while(curr!=null) {
+                s.push(curr);  
+                curr = curr.left;             
+            }
+            if (curr == null) {
+                curr = s.pop();
+                System.out.print(curr.data + " ");
+                curr=curr.right;
+            }
+        }
+    }
+
+    public static void inorder(CharTreeNode root) {
         if (root == null) { return; }
         inorder(root.left);
         System.out.print(root.data + " ");
