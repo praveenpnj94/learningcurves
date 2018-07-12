@@ -13,6 +13,7 @@ import binarytree.medium.ContinuousTree;
 import binarytree.medium.ExpressionTree;
 import binarytree.medium.FoldableTree;
 import binarytree.medium.MorrisInorder;
+import binarytree.medium.PostorderTraversalGivenInorderPreorder;
 import binarytree.medium.TreeFromArray;
 import binarytree.medium.TreeLeftView;
 
@@ -162,8 +163,15 @@ public class BinaryTreeDriver {
         /******************************************************************/
         
         /***************Code for Morris Inorder Traversal****************************/       
-        MorrisInorder.morrisInorder(tree.root);
+        //MorrisInorder.morrisInorder(tree.root);
         
         /******************************************************************/
+        
+        /*****************Code for Printing Post Order from given Inorder and Preorder************/
+        int in[] = {4, 2, 5, 1, 3, 6};
+        int pre[] =  {1, 2, 4, 5, 3, 6};
+        PostorderTraversalGivenInorderPreorder.postOrderTraversalFromInorderAndPreorder(in, pre, 0, in.length-1);
+        
+        /************************************************************************************/
     }
 }
