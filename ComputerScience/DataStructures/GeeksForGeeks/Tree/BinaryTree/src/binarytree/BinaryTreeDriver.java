@@ -3,19 +3,11 @@
  */
 package binarytree;
 
+import java.util.List;
+
 import binarytree.easy.DfsTreeTraversal;
-import binarytree.easy.MirrorTree;
-import binarytree.easy.NodeInsertion;
-import binarytree.easy.SameStructureTree;
-import binarytree.easy.SymmetricTree;
-import binarytree.easy.TreeMaxMin;
-import binarytree.medium.ContinuousTree;
-import binarytree.medium.ExpressionTree;
-import binarytree.medium.FoldableTree;
-import binarytree.medium.MorrisInorder;
-import binarytree.medium.PostorderTraversalGivenInorderPreorder;
-import binarytree.medium.TreeFromArray;
-import binarytree.medium.TreeLeftView;
+import binarytree.medium.AllPossibleBinaryTreeGivenInorderTraversal;
+import binarytree.medium.BinaryTreeWithSumInorderPredecessorSuccessor;
 
 /**
  * @author praveen on 16-Jun-2018 4:20:09 PM 2018
@@ -168,10 +160,37 @@ public class BinaryTreeDriver {
         /******************************************************************/
         
         /*****************Code for Printing Post Order from given Inorder and Preorder************/
+        /*
         int in[] = {4, 2, 5, 1, 3, 6};
         int pre[] =  {1, 2, 4, 5, 3, 6};
         PostorderTraversalGivenInorderPreorder.postOrderTraversalFromInorderAndPreorder(in, pre, 0, in.length-1);
+        */
         
+        /************************************************************************************/
+        
+        /*****************Code for Printing Post Order from given Preorder of BST************/
+
+        /*int pre[] = { 40, 30, 35, 80, 100 };
+        PostorderFromPreorderBST.generatePostorderFromPreorderRecursively(pre, pre.length);*/
+        
+        /************************************************************************************/
+        
+        /*****************Code for Printing All Possible Binary Trees from given Preorder of BST************/
+        /*
+        int in[] = { 4,5,7 };
+        List<TreeNode> trees =AllPossibleBinaryTreeGivenInorderTraversal.getAllPossibleBinaryTreeGivenInorderTraversal(in, 0, in.length-1);
+        System.out.println("Preorder traversal of different "+
+                           " binary trees are:");
+        for (int i = 0; i < trees.size(); i++) {
+            DfsTreeTraversal.preorder(trees.get(i));
+            System.out.println("");
+        }
+        */
+        /************************************************************************************/
+        
+        /*****************Code for Replacing Tree with sum of its predecessor and successor ************/
+        BinaryTreeWithSumInorderPredecessorSuccessor.replaceBinaryTreeWithSumInorderPredecessorSuccessorUtil(tree.root);
+        DfsTreeTraversal.preorder(tree.root);
         /************************************************************************************/
     }
 }
