@@ -1,3 +1,7 @@
+//https://leetcode.com/problems/subarray-sum-equals-k/
+//https://leetcode.com/explore/challenge/card/30-day-leetcoding-challenge/531/week-4/3307/
+
+
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.HashMap;
