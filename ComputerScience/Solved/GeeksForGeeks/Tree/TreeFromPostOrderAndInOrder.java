@@ -24,7 +24,7 @@ class GfG
 {
     int pIndex;
 	// Complete the function
-        Node buildTree(int in[], int post[], int n)
+    Node buildTree(int in[], int post[], int n)
 	{
 	    
            HashMap<Integer,Integer> m = new HashMap<Integer,Integer>();

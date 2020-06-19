@@ -1,4 +1,5 @@
 //https://www.geeksforgeeks.org/write-a-c-program-to-print-all-permutations-of-a-given-string/
+//https://www.youtube.com/watch?v=GuTPwotSdYw
 
 /*package whatever //do not write package name here */
 

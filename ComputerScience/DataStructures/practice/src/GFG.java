@@ -1,26 +1,60 @@
-import java.util.ArrayDeque;
-import java.util.Deque;
-import java.util.HashMap;
-import java.util.Stack;
+import java.util.LinkedList;
+import java.util.Queue;
 
-class GFG
-{
-    public static int subarraySum(int[] nums, int k) {
-        int count = 0, sum = 0;
-        HashMap< Integer, Integer > map = new HashMap < > ();
-        map.put(0, 1);
-        for (int i = 0; i < nums.length; i++) {
-            sum += nums[i];
-            if (map.containsKey(sum - k))
-                count += map.get(sum - k);
-            map.put(sum, map.getOrDefault(sum, 0) + 1);
+class GFG {
+    public static int orangesRotting(int[][] grid) {
+        int minutes=0;
+        if(grid==null||grid.length==0){
+            return 0;
         }
-        return count;
+        Queue<Node> q = new LinkedList<>();
+        int m = grid.length;
+        int n = grid[0].length;
+        for(int i=0;i<m;i++){
+            for(int j=0;j<n;j++){
+                if(grid[i][j]==2){
+                    q.add(new Node(i,j));
+                }
+            }
+        }
+        int[][] dim = {{-1,0},{1,0},{0,-1},{0,1}};
+        int array[] ={1,2,3,4};
+        while(!q.isEmpty()){
+            int size = q.size();
+            minutes++;
+            for(int i=0;i<size;i++){
+                Node t = q.poll();
+                int x = t.x;
+                int y = t.y;
+                for(int[] d:dim){
+                    int nx = x+d[0];
+                    int ny = y+d[1];
+                    if(nx>=0 && ny>=0 && nx<m && ny<n && grid[nx][ny]==1){
+                        grid[x][y]=2;
+                        q.add(new Node(nx,ny));
+                    }
+                }
+            }
+        }
+        for(int i=0;i<m;i++){
+            for(int j=0;j<n;j++){
+                if(grid[i][j]==1){
+                    return -1;
+                }
+            }
+        }
+        return minutes==0?0:minutes-1;
     }
-
-    public static void main(String args[])
-    {
-        int[] arr = {3,4,7,2,-3,1,4,2};
-        System.out.println(subarraySum(arr,7));
+    public static void main(String[] args){
+        int[][] grid = {{2,1,1},{1,1,0},{0,1,1}};
+        System.out.println(orangesRotting(grid));
+    }
+}
+class Node{
+    int x;
+    int y;
+    Node(int x, int y){
+        this.x = x;
+        this.y = y;
     }
 }

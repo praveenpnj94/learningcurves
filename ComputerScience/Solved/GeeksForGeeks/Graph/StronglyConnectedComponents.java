@@ -1,4 +1,5 @@
 //https://www.geeksforgeeks.org/strongly-connected-components/
+//https://www.youtube.com/watch?v=RpgcYiky7uw
 
 // Java implementation of Kosaraju's algorithm to print all SCCs 
 import java.io.*; 

@@ -1,103 +1,55 @@
 //https://www.youtube.com/watch?v=3hF3hP1MlUM&list=PLpO3gASfJEIJ4tnnYUX6vm8OhR92iGM7J&index=12
+//https://leetcode.com/discuss/interview-question/411357/
 
-/*package whatever //do not write package name here */
-
-import java.util.*;
-import java.lang.*;
-import java.io.*;
-
-class GFG {
-	public static void main (String[] args) {
-		Scanner sc = new Scanner(System.in);
-		int t = sc.nextInt();
-		while(t-->0){
-		    int r = sc.nextInt();
-		    int c = sc.nextInt();
-		    int[][] mat = new int[r][c];
-		    for(int i=0;i<r;i++){
-		        for(int j=0;j<c;j++){
-		            mat[i][j]= sc.nextInt();
-		        }
-		    }
-		    System.out.println(rottenOranges(mat,r,c));
-		}
-	}
-	public static int rottenOranges(int[][] mat, int r, int c){
-	    Queue<Pair> q = new LinkedList<>();
-	    for(int i=0;i<r;i++){
-	        for(int j=0;j<c;j++){
-	            if(mat[i][j]==2){
-	                q.add(new Pair(i,j));
-	            }
-	        }
-	    }
-	    q.add(null);
-	    int ans = 0;
-	    while(!q.isEmpty()){
-	        boolean flag = false;
-	        while(q.peek()!=null){
-	            Pair temp = q.peek();
-	            if(isValid(temp.i+1,temp.j,r,c) && (mat[temp.i+1][temp.j]==1)){
-	                if(!flag){
-	                    flag = true;
-	                    ans++;
-	                }
-	                mat[temp.i+1][temp.j]=2;
-	                q.add(new Pair(temp.i+1,temp.j));
-	            }
-	            if(isValid(temp.i-1,temp.j,r,c) && (mat[temp.i-1][temp.j]==1)){
-	                if(!flag){
-	                    flag = true;
-	                    ans++;
-	                }
-	                mat[temp.i-1][temp.j]=2;
-	                q.add(new Pair(temp.i-1,temp.j));
-	            }
-	            if(isValid(temp.i,temp.j+1,r,c) && (mat[temp.i][temp.j+1]==1)){
-	                if(!flag){
-	                    flag = true;
-	                    ans++;
-	                }
-	                mat[temp.i][temp.j+1]=2;
-	                q.add(new Pair(temp.i,temp.j+1));
-	            }
-	            if(isValid(temp.i,temp.j-1,r,c) && (mat[temp.i][temp.j-1]==1)){
-	                if(!flag){
-	                    flag = true;
-	                    ans++;
-	                }
-	                mat[temp.i][temp.j-1]=2;
-	                q.add(new Pair(temp.i,temp.j-1));
-	            }
-	            q.poll();
-	        }
-	        q.poll();
-	        if(!q.isEmpty()){
-	            q.add(null);
-	        }
-	    }
-	    for(int i=0;i<r;i++){
-	        for(int j=0;j<c;j++){
-	            if(mat[i][j]==1){
-	                ans=-1;
-	                break;
-	            }
-	        }
-	    }
-	    return ans;
-	}
-	public static boolean isValid(int x,int y,int r,int c){
-	    if(x<0||y<0||x>=r||y>=c){
-	        return false;
-	    }
-	    return true;
-	}
+class Solution {
+    public int orangesRotting(int[][] grid) {
+        int minutes=0;
+        if(grid==null||grid.length==0){
+            return 0;
+        }
+        Queue<Node> q = new LinkedList<>();
+        int m = grid.length;
+        int n = grid[0].length;
+        for(int i=0;i<m;i++){
+            for(int j=0;j<n;j++){
+                if(grid[i][j]==2){
+                    q.add(new Node(i,j));
+                }
+            }
+        }
+        int[][] dim = {{-1,0},{1,0},{0,-1},{0,1}};
+        while(!q.isEmpty()){
+            int size = q.size();
+            minutes++;
+            for(int i=0;i<size;i++){
+                Node t = q.poll();
+                int x = t.x;
+                int y = t.y;
+                for(int[] d:dim){
+                    int nx = x+d[0];
+                    int ny = y+d[1];
+                    if(nx>=0 && ny>=0 && nx<m && ny<n && grid[nx][ny]==1){
+                        grid[nx][ny]=2;
+                        q.add(new Node(nx,ny));
+                    }
+                }
+            }
+        }
+        for(int i=0;i<m;i++){
+            for(int j=0;j<n;j++){
+                if(grid[i][j]==1){
+                    return -1;
+                }
+            }
+        }
+        return minutes==0?0:minutes-1;
+    }
 }
-class Pair{
-    int i=0;
-    int j=0;
-    Pair(int i, int j){
-        this.i = i;
-        this.j = j;
+class Node{
+    int x;
+    int y;
+    Node(int x, int y){
+        this.x = x;
+        this.y = y;
     }
 }

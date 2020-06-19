@@ -1,3 +1,6 @@
+import java.util.HashMap;
+import java.util.Map;
+
 //https://www.geeksforgeeks.org/clone-linked-list-next-arbit-pointer-set-2/
 
 

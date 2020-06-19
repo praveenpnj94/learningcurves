@@ -1,6 +1,5 @@
-import java.util.HashMap;
+import java.util.*;
 import java.util.LinkedList;
-import java.util.Queue;
 
 public class LRUCache {
 
@@ -30,6 +29,20 @@ public class LRUCache {
         }
         queue.add(key);
         map.put(key,map.getOrDefault(key,0)+1);
+    }
+
+    public int removeElement(ArrayList<Integer> a, int b) {
+        HashMap<Integer,Integer> m = new LinkedHashMap<>();
+        for(int i=0;i<a.size();i++){
+            m.put(a.get(i),m.getOrDefault(a.get(i),0)+1);
+        }
+        int cnt=0;
+        for(Map.Entry<Integer,Integer> entry:m.entrySet()){
+            if(entry.getValue()==1){
+                cnt++;
+            }
+        }
+        return cnt;
     }
 
     public static void main(String[] args){
