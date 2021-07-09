@@ -13,7 +13,7 @@ public class Solution {
   
             // Getting value of symbol s[i+1] 
             if (i+1 <str.length()) 
-            { 
+            {
                 int s2 = value(str.charAt(i+1)); 
   
                 // Comparing both values 

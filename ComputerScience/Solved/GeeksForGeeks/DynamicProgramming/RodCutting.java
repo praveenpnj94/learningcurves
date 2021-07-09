@@ -3,36 +3,33 @@
 
 /*package whatever //do not write package name here */
 
-import java.util.*;
-import java.lang.*;
-import java.io.*;
+class RodCutting {
 
-class GFG {
-	public static void main (String[] args) {
-		Scanner sc = new Scanner(System.in);
-		int t = sc.nextInt();
-		while(t-->0){
-		    int n = sc.nextInt();
-		    int[] a = new int[n];
-		    for(int i=0;i<n;i++){
-		        a[i] = sc.nextInt();
-		    }
-		    System.out.println(rodCutting(a,n));
-		}
+	public int solveRodCutting(int[] lengths, int[] prices, int n) {
+	  int N = lengths.length;
+	  int dp[][] = new int[N+1][n + 1];
+		  
+		  // Fill dp[] using above recursive formula
+		  for(int i = 1; i <= N; i++){
+			  for(int j = 1; j <= n; j++){
+				  if(lengths[i-1] <= j){
+					  dp[i][j] = Math.max(dp[i-1][j], dp[i][j-lengths[i-1]] + 
+								  prices[i-1]);
+				  }
+				  else{
+					  dp[i][j]=dp[i-1][j];
+				  }
+			  }
+		  }
+		  return dp[N][n];
 	}
-	public static int rodCutting(int price[],int n){
-        int val[] = new int[n+1]; 
-        val[0] = 0; 
   
-        // Build the table val[] in bottom up manner and return 
-        // the last entry from the table 
-        for (int i = 1; i<=n; i++) 
-        { 
-            int max_val = Integer.MIN_VALUE; 
-            for (int j = 0; j < i; j++) 
-                max_val = Math.max(max_val, price[j] + val[i-j-1]); 
-            val[i] = max_val; 
-        } 
-        return val[n];
+	public static void main(String[] args) {
+	  RodCutting rc = new RodCutting();
+	  int[] lengths = {1, 2, 3, 4, 5};
+	  int[] prices = {2, 6, 7, 10, 13};
+	  int maxProfit = rc.solveRodCutting(lengths, prices, 5);
+	  System.out.println(maxProfit);
 	}
-}
+  }
+  

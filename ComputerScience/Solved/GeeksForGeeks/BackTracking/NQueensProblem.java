@@ -1,4 +1,5 @@
 //https://www.geeksforgeeks.org/n-queen-problem-backtracking-3/
+//https://www.youtube.com/watch?v=lTPIX2Ywo3U
 
 
 /* Java program to solve N Queen Problem using 

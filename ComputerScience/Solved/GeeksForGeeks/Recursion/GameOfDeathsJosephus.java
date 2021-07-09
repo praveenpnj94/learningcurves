@@ -27,3 +27,47 @@ class GFG {
 	    }
 	}
 }
+
+
+// Iterative solution for Josephus Problem 
+class Test 
+{ 
+
+	// Method for finding the winning child. 
+	private int josephus(int n, int k) 
+	{ 
+		int sum = 0; 
+
+		// For finding out the removed 
+		// chairs in each iteration 
+		for(int i = 2; i <= n; i++) 
+		{ 
+			sum = (sum + k) % i; 
+		} 
+
+		return sum+1; 
+	} 
+
+	// Driver Program to test above method 
+	public static void main(String[] args) 
+	{ 
+		int n = 14; 
+		int k = 2; 
+		Test obj = new Test(); 
+		System.out.println(obj.josephus(n, k)); 
+	} 
+
+	static int josephus(int n, int k)
+{
+if (n == 1)
+    return 1;
+else
+    /* The position returned by josephus(n - 1, k)
+    is adjusted because the recursive call
+    josephus(n - 1, k) considers the original
+    position k%n + 1 as position 1 */
+    return (josephus(n - 1, k) + k-1) % n + 1;
+}
+} 
+
+// This code is contributed by Kumar Saras 

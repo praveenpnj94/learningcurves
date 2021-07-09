@@ -1,11 +1,8 @@
 //https://practice.geeksforgeeks.org/problems/minimum-cost-path/0/?track=PC-W7-GR&batchId=127
 
 
-import java.util.*;
-import java.lang.*;
-import java.io.*;
-
-class GFG {
+class Solution
+{
     static class cell{
         int x,y,dist;
         cell(int x,int y,int dist){
@@ -14,28 +11,16 @@ class GFG {
             this.dist=dist;
         }
     }
-	public static void main (String[] args) {
-		Scanner sc=new Scanner(System.in);
-		int t=sc.nextInt();
-		while(t-->0){
-		    int n=sc.nextInt();
-		    int arr[][]=new int[n][n];
-		    int dist[][]=new int[n][n];
-		    for(int i=0;i<n;i++){
-		        for(int j=0;j<n;j++){
-		            arr[i][j]=sc.nextInt();
-		            dist[i][j]=Integer.MAX_VALUE;
-		        }
-		    }
-		    System.out.println(dijkstra(arr,dist,n));
-		}
-	}
-	static int dijkstra(int arr[][],int dist[][],int n){
-	    PriorityQueue<cell> q=new PriorityQueue<cell>(new Comparator<cell>(){
-	        public int compare(cell a,cell b){
-	            return a.dist-b.dist;
-	        }
-	    });
+    public int minimumCostPath(int[][] arr)
+    {
+        PriorityQueue<cell> q=new PriorityQueue<cell>((a,b)->a.dist-b.dist);
+        int n = arr.length;
+        int[][] dist = new int[n][n];
+        for(int i=0;i<n;i++){
+            for(int j=0;j<n;j++){
+                dist[i][j]=Integer.MAX_VALUE;
+            }
+        }
 	    boolean visited[][]=new boolean[n][n];    
 	    int r[]={-1,0,0,1};
 	    int c[]={0,-1,1,0};
@@ -58,8 +43,9 @@ class GFG {
     	    }
     	}
     	return -1;
-	}
-	static boolean Valid(int row,int col,int n){
+    }
+    
+    boolean Valid(int row,int col,int n){
 	    return row>=0&&row<n&&col>=0&&col<n;
 	}
 }
